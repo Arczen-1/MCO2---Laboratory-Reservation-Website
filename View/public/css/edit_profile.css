@@ -1,0 +1,187 @@
+@import url('https://fonts.cdnfonts.com/css/caros');
+
+body{
+    background-color: #F7EFE8;
+}
+
+#topLeft{
+    display: flex;
+    align-items: center;
+    background-color: #1F271B;
+    border-radius: 25px;
+    width: 800px;
+    height: 175px;
+    margin-top: -5%;
+    margin-left: -2%;
+}
+
+#topRight{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+#logo img {
+    width: 60px;
+    height: 60px;
+    padding-left: 25px;
+    padding-top: 4px;
+}
+
+#title {
+    color: white;
+    padding-left: 30px;
+    padding-top: 65px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+#top{
+    display: flex;
+    padding-bottom: 40px;
+}
+
+#homee{
+    border-radius: 25px;
+    margin-right: 30px;
+    background-color: #f3eded;
+    border: solid;
+    color: #1F271B;
+    border-color:#1F271B;
+    width: 120px;
+    height: 50px;
+    font-size: 17px;
+    cursor: pointer;
+    font-family: caros;
+    margin-left: 200px;
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    border: 0;
+    outline: none;
+    padding-bottom: 10px;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    border: 0;
+    outline: none;
+    margin-top: 5%;
+    font-family: caros;
+    
+}
+
+.dropdown-content-user {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    border: 0;
+    outline: none;
+    margin-top: 5%;
+    font-family: caros;
+    margin-left: -120%
+}
+
+.dropdown:hover .dropdown-content {display: block; background-color: #1F271B; border-radius: 20px; font-family: caros; width: 120px; border: 2px solid white; }
+
+.dropdown:hover .dropdown-content-user {display: block; background-color: #1F271B; border-radius: 20px; font-family: caros; width: 120px; border: 2px solid white;}
+
+.reserve:hover {
+    
+    color: blue;
+}
+
+#reservee:hover{
+    background-color:darkolivegreen;
+    
+}
+#view:hover{
+    background-color: black;
+    color: white;
+}
+.button.innerlink{
+    border: 0;
+    padding: 10px;
+    color: white;
+    border-radius: 40px;
+    background-color: transparent;
+    font-family: caros;
+    
+}
+
+.button.innerlink:hover {
+    background-color: darkolivegreen;
+    color:white;
+
+}
+
+
+#reserveTwo:hover{
+    background-color: black;
+    color: white;
+}
+
+
+
+#reservee{
+    border-radius: 25px;
+    margin-right: 30px;
+    background-color: #1F271B;
+    border: solid;
+    color: white;
+    border-color:#1F271B;
+    width: 120px;
+    height: 50px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 5%;
+    font-family: caros;
+}
+
+#view{
+    border-radius: 25px;
+    margin-right: 30px;
+    color: #1F271B;
+    background-color: white;
+    border: solid;
+    border-color: #1F271B;
+    width: 120px;
+    height: 50px;
+    padding-left: 9px;
+    font-size: 17px;
+    font-family: caros;
+    cursor: pointer;
+}
+#icon img{
+    margin-right: 30px;
+    width: 40px;
+    height: 40px;
+    margin-top: 8px;
+    margin-right: 2%;
+}
+#icon{
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    cursor: pointer;
+    border-color: transparent;
+    margin-right: 7%;
+}
+
+#container{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;;
+}
+
+#containerTwo {
+    margin-right: -202px;
+    margin-top: 3px;
+}

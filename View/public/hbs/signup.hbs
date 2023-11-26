@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="/css/universal.css">
+    <link rel="stylesheet" href="/css/login_logout.css">
+    <style>
+        /* Default CSS Values */
+        a:link, a:visited { 
+          color:black;
+          text-decoration: underline;
+          cursor: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <div id="header">
+            <img id="logo" src="/images/DLSU.png"> </img>
+            <div id="logo-text"> DLSU LABORATORY RESERVATION SYSTEM </div> 
+        </div>
+        <div>
+            <button type="button" id = "home" onclick="window.location.href='/homie';">Home</button>
+        </div>
+    </div>
+        
+    <div class="login-container">
+        <h1 id="login-text"> SIGNUP </h1>
+        <form class="login-form" id="login" action="/signup" method="post"> 
+            <div id="input">
+                <label for="username">Username: </label><br>
+                <input type="text" id="username" name="username" ><br>
+            </div>
+                
+            <div id="input">
+                <label for="password">Password: </label><br>
+                <input type="password" id="password" name="password" ><br>
+            </div>
+            
+            <div id="input">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" ><br>
+            </div>
+            <div id="button">
+                <button type="submit" id="submit">Register</button>
+            </div>
+        </form>
+        <div id="errors">
+            {{#if errors}}
+            <ul>
+                {{#each errors}}
+                <li>{{this.msg}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </div>
+    </div>
+
+</body>
+
+</html>

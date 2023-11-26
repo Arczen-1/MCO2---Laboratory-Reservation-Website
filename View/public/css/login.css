@@ -1,0 +1,96 @@
+@import url('https://fonts.cdnfonts.com/css/caros');
+body{
+    background-color: #F7EFE8;
+    font-family: caros;
+    color: #F7EFE8;
+}
+.header{
+    display: flex;
+    margin: auto;
+    flex: 1;
+}
+#header{
+    width: 875px;
+    height: 175px;
+    display:flex;
+    background-color: #1F271B;
+    border-radius: 40px;
+    margin-top: -4%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+#logo{
+    display: flex;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#logo-text{
+    display:flex;
+    font-family: caros;
+    color: F7EFE8;
+    font-size: 35px;
+    flex: 1;
+    margin: auto;
+    padding-top: 50px;
+    font-weight: 700;
+}
+
+.login-container{
+    width: 675px;
+    height: 500px;
+    background-color: #1F271B;
+    border-radius: 40px;
+    justify-content: center;
+    margin-top: 5%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    
+}
+
+#login-text{
+    padding-top: 40px;
+    font-family: Caros;
+    color: #F7EFE8;
+}
+#login{
+    padding: 40px;
+}
+#username{
+    height: 40px;
+    width: 350px;
+    border-radius: 40px;
+}
+
+#password{
+    height: 40px;
+    width: 350px;
+    border-radius: 40px;
+    
+}
+
+#input{
+    padding: 10px;
+}
+
+#button{
+    padding-top: 30px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 125px;
+}
+
+#submit{
+    font-family: caros;
+    color: #1F271B;
+    width: 100px;
+    height: 30px;
+}

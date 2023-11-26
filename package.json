@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "hbs": "^4.2.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "updated-11-16-23-20231116t151524z-001",
+  "version": "1.0.0",
+  "main": "mongodb.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

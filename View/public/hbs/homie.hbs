@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<hbs>
+    <head>
+        <link href="/css/homie.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id = "top">
+            <div id = "topLeft">
+                <div id = "logo"><img src = "/images/DLSU.png"></div>
+                <div id = "title">DLSU LABORATORY RESERVATION SYSTEM</div>
+            </div>
+             {{#if isLoggedIn}}
+      <div class="notif">
+      <div class="center">
+        <div class="check">
+          <i class="far fa-check-circle color"></i> &nbsp; &nbsp;
+          <span>Welcome, {{username}}!</span>
+        </div>
+      </div>
+      </div>
+      {{else}}
+      <div class="notif">
+      <div class="center">
+        <div class="check">
+          <i class="far fa-check-circle color"></i> &nbsp; &nbsp;
+          <span>Welcome, Guest!</span>
+        </div>
+      </div>
+      </div>
+      {{/if}}
+            <div id = "topRight">
+                <div class ="dropdown margin">
+                    <button type="button" id="reserve" class="reserve">RESERVE</button>
+                        <div class="dropdown-content">
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/reserve';">Reserve For Student</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/remove';">Remove Reservation</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/edit_reservations';">Edit Reservation</button>
+                            <button type="button" class = "button innerlink " onclick="window.location.href='/view_reservations';">View Reservation</button>
+                        </div>
+                </div>
+                
+                
+                <button id = "view" class = "dropbtn margin" onclick="window.location.href='/view_slot';">VIEW SLOT</button>
+                <button id="signup" class="dropbtn margin" onclick="window.location.href='/signup';">REGISTER</button>
+                <button id = "login" class = "dropbtn margin" onclick="window.location.href='/login';">LOGIN</button>
+                <button id="logout" class="dropbtn margin" onclick="window.location.href='/logout';">LOGOUT</button>
+
+                <div class ="dropdown margin">
+                    <button type="button" id="icon" class = "dropbtn"><img src="/images/profile.png"></button>
+                    <div class="dropdown-content-user">
+                        <button type="button" class = "button innerlink" onclick="window.location.href='view_user';">View User Profile</button>
+                        <button type="button" class = "button innerlink" onclick="window.location.href='edit_user';">Edit User Profile</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div id = "body">
+            <div id = "bodyLeft"><img id="lab" src="/images/lab3.jpg"></div>
+            <div id = "bodyRight">
+                <div id = "messageTitle">DLSU Opens the Doors to Science: Secure Your Lab Space Today!</div>
+                <div id = "message">With our state-of-the-art laboratory reservation system, DLSU is your entryway to scientific research and creativity. Whether you're a student, researcher, or industry expert, our platform provides simple access to cutting-edge facilities for your experiments and projects. Booking a lab space has never been simpler thanks to our intuitive UI. With the streamlined laboratory reservation services offered by DLSU, expand your horizons and advance your scientific endeavors. Start now and you'll have the secret to endless scientific discovery!</div>
+                <div id = "message2">At DLSU, we recognize the critical role that a well-stocked lab plays in advancing knowledge and scientific discovery. You have the power to take charge of your academic and research pursuits thanks to our platform for lab reservation. Our university has a wide variety of specialist laboratories available, including those for biology, chemistry, physics, and engineering, our commitment to fostering innovation knows no bounds. Join us in our mission to advance the frontiers of science and technology. Make your reservation today and experience the ease and efficiency of lab access at its best. Your breakthrough awaits!</div>
+                <div id = "buttonArea">
+                    <button id = "reserveTwo" class = "button innerlink" onclick="window.location.href='/reserve';">RESERVE NOW!</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</hbs>

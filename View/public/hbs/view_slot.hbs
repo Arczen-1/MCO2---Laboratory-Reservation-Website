@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<hbs>
+    <link rel="stylesheet" href="css/universal.css">
+
+    <head>
+        <style>
+            /* Default CSS Values */
+            a:link, a:visited { 
+              color:black;
+              text-decoration: underline;
+              cursor: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id = "top">
+            <div id = "topLeft">
+                <div id = "logo"><img src = "/images/DLSU.png"></div>
+                <div id = "title">DLSU LABORATORY RESERVATION SYSTEM</div>
+            </div>
+            <div id = "topRight">
+
+                <div class ="dropdown margin">
+                    <button type="button" id="reservee" class="reservee">RESERVE</button>
+                        <div class="dropdown-content">
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/reserve';">Reserve For Student</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/remove';">Remove Reservation</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/edit_reservations';">Edit Reservation</button>
+                            <button type="button" class = "button innerlink " onclick="window.location.href='/view_reservations';">View Reservation</button>
+                        </div>
+                </div>
+                
+                
+                <button id = "view" class = "dropbtn margin" onclick="window.location.href='/view_slot';">VIEW SLOT</button>
+                <button type="button" id = "home" onclick="window.location.href='/homie';">Home</button>
+
+                <div class ="dropdown margin">
+                    <button type="button" id="icon" class = "dropbtn"><img src="/images/profile.png"></button>
+                    <div class="dropdown-content-user">
+                        <button type="button" class = "button innerlink" onclick="window.location.href='view_user';">View User Profile</button>
+                        <button type="button" class = "button innerlink" onclick="window.location.href='edit_user';">Edit User Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id = "detailFather">
+        <div class="detailContainer">
+            <div class="details">
+                To view a slot, select a date and time you want to reserve.
+            </div>
+        </div>
+        <div id = "space">
+
+        </div>
+        <div class="detailContainerTwo">
+            <div class="detailsTwo">
+                VIEW SLOT
+            </div>
+        </div>
+
+    </div>
+
+         <div class="seatContainer">
+    <div class="board">BOARD</div>
+    <div class="legend">LEGEND
+        <div class="resLegend">Available</div>
+        <div class="availLegend">Reserved</div>
+    </div>
+    <div id="seatBoard">
+        {{#each seats}}
+            <div class="seat {{#if reserved}}seat taken{{/if}}" data-seat="{{this}}">{{this}}</div>
+        {{/each}}
+    </div>
+
+    <div class="date">
+        <label for="selectedDate">Reservation Date: </label>
+        <input type="datetime-local" id="reservation" name="selectedDate" onchange="fetchReservedSeats()" step="3600">
+    </div>
+</div>
+
+<script src="/Controller/view_slotController.js"></script>
+    </body>
+</hbs>

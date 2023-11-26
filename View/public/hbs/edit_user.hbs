@@ -1,0 +1,128 @@
+<html>
+
+  <head>
+
+    <link rel="stylesheet" href="/css/edit_profile.css" />
+    <link rel="stylesheet" href="/css/login_logout.css" />
+    <style>
+      /* Default CSS Values */ a:link, a:visited { color:black; text-decoration:
+      underline; cursor: auto; }
+    </style>
+  </head>
+
+  <body>
+    <div id="top">
+      <div id="topLeft">
+        <div id="container">
+          <div id="logo"><img src="/images/DLSU.png" /></div>
+          <div id="title">DLSU LABORATORY RESERVATION SYSTEM</div>
+        </div>
+      </div>
+      <div id="topRight">
+
+        <div id="containerTwo">
+          <div class="dropdown margin">
+            <button
+              type="button"
+              id="reservee"
+              class="reservee"
+            >RESERVE</button>
+            <div class="dropdown-content">
+              <button
+                type="button"
+                class="button innerlink"
+                onclick="window.location.href='/reserve';"
+              >Reserve For Student</button>
+              <button
+                type="button"
+                class="button innerlink"
+                onclick="window.location.href='/remove';"
+              >Remove Reservation</button>
+              <button
+                type="button"
+                class="button innerlink"
+                onclick="window.location.href='/edit_reservations';"
+              >Edit Reservation</button>
+              <button
+                type="button"
+                class="button innerlink"
+                onclick="window.location.href='/view_reservations';"
+              >View Reservation</button>
+            </div>
+          </div>
+
+          <button
+            id="view"
+            class="dropbtn margin"
+            onclick="window.location.href='/view_slot';"
+          >VIEW SLOT</button>
+        </div>
+        <button
+          type="button"
+          id="homee"
+          onclick="window.location.href='/homie';"
+        >Home</button>
+
+        <div class="dropdown margin">
+          <button type="button" id="icon" class="dropbtn"><img
+              src="/images/profile.png"
+            /></button>
+          <div class="dropdown-content-user">
+            <button
+              type="button"
+              class="button innerlink"
+              onclick="window.location.href='view_user';"
+            >View User Profile</button>
+            <button
+              type="button"
+              class="button innerlink"
+              onclick="window.location.href='edit_user';"
+            >Edit User Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sign-up-container">
+      <h1 id="login-text"> EDIT PROFILE </h1>
+      <form class="login-form" id="login" action="/edit_user" method="post">
+        <div id="input">
+          <label for="username">New Username: </label><br />
+          <input type="text" id="username" name="username" /><br />
+        </div>
+
+        <div id="input">
+          <label for="password">New Password: </label><br />
+          <input type="password" id="password" name="password" /><br />
+        </div>
+
+        <div id="input">
+          <label for="course">Course: </label><br />
+          <input type="text" id="username" name="course" /><br />
+        </div>
+
+        <div id="input">
+          <label for="type">Type:</label><br />
+          <select name="type" id="type">
+            <option value="Student">Student</option>
+            <option value="Staff">Staff</option>
+          </select><br />
+        </div>
+
+        <div id="button">
+          <button type="submit" id="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    {{#if errors}}
+      <ul>
+        {{#each errors}}
+          <li>{{this.msg}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+  </body>
+
+</html>

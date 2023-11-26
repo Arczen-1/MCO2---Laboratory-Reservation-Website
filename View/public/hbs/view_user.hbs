@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link href="/css/universal.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+        <style>
+            /* Default CSS Values */
+            a:link, a:visited { 
+              color:black;
+              text-decoration: underline;
+              cursor: auto;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+        <div id = "top">
+            <div id = "topLeft">
+                <div id = "logo"><img src = "/images/DLSU.png"></div>
+                <div id = "title">DLSU LABORATORY RESERVATION SYSTEM</div>
+            </div>
+            <div id = "topRight">
+
+                <div class ="dropdown margin">
+                    <button type="button" id="reservee" class="reservee">RESERVE</button>
+                        <div class="dropdown-content">
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/reserve';">Reserve For Student</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/remove';">Remove Reservation</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/edit_reservations';">Edit Reservation</button>
+                            <button type="button" class = "button innerlink " onclick="window.location.href='/view_reservations';">View Reservation</button>
+                        </div>
+                </div>
+                
+                
+                <button id = "view" class = "dropbtn margin" onclick="window.location.href='/view_slot';">VIEW SLOT</button>
+                <button type="button" id = "home" onclick="window.location.href='/homie';">Home</button>
+
+                <div class ="dropdown margin">
+                    <button type="button" id="icon" class = "dropbtn"><img src="/images/profile.png"></button>
+                    <div class="dropdown-content-user">
+                        <button type="button" class = "button innerlink" onclick="window.location.href='/view_user';">View User Profile</button>
+                        <button type="button" class = "button innerlink" onclick="window.location.href='/edit_user';">Edit User Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if isLoggedIn}}
+            <div class="userContainer">
+                <div class = "userImgDiv"> <img src="images/profilepicture.jpg" class="userImg"> </div>
+                <div class = "userCardText"></div>
+                <div class = "role">{{currentUser.type}}</div>
+                <div class = "userCardName">{{ currentUser.username}} </div>
+                <div class = "course">{{currentUser.course}}</div>
+                <div class = "contacts"></div>
+                <div class = "socials"></div>
+                <div class="sp">
+                    <div id = "facebook" class="sprites"></div>
+                    <div id = "twitter" class="sprites"></div>
+                    <div id = "github" class="sprites"></div>
+                </div>
+                <button id="editProfile" onclick="window.location.href='/edit_user'">Edit Profile</button>
+                </div>
+                {{else}}
+                <div class="userContainer">
+                <div class = "userCardText"></div>
+                <div class = "role">Hi, Guest!</div>
+                <div class = "userCardName">You may view user once logged in</div>
+                <div class = "course"></div>
+                <div class = "contacts"></div>
+                <div class = "socials"></div>
+                <button id="editProfile" onclick="window.location.href='/login'">Login</button>
+                </div>
+            {{/if}}
+        
+        
+    </body>
+
+</html>

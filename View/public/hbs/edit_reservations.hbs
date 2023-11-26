@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<hbs>
+
+<link rel="stylesheet" href="/css/universal.css">
+
+    <head>
+        
+        <style>
+            /* Default CSS Values */
+            a:link, a:visited { 
+              color:black;
+              text-decoration: underline;
+              cursor: auto;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+        <div id = "top">
+            <div id = "topLeft">
+                <div id = "logo"><img src = "/images/DLSU.png"></div>
+                <div id = "title">DLSU LABORATORY RESERVATION SYSTEM</div>
+            </div>
+            <div id = "topRight">
+
+                <div class ="dropdown margin">
+                    <button type="button" id="reservee" class="reservee">RESERVE</button>
+                        <div class="dropdown-content">
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/reserve';">Reserve For Student</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/remove';">Remove Reservation</button>
+                            <button type="button" class = "button innerlink" onclick="window.location.href='/edit_reservations';">Edit Reservation</button>
+                            <button type="button" class = "button innerlink " onclick="window.location.href='/view_reservations';">View Reservation</button>
+                        </div>
+                </div>
+                
+                
+                <button id = "view" class = "dropbtn margin" onclick="window.location.href='/view_slot';">VIEW SLOT</button>
+                <button type="button" id = "home" onclick="window.location.href='/homie';">Home</button>
+
+                <div class ="dropdown margin">
+                    <button type="button" id="icon" class = "dropbtn"><img src="/images/profile.png"></button>
+                    <div class="dropdown-content-user">
+                        <button type="button" class = "button innerlink" onclick="window.location.href='view_user';">View User Profile</button>
+                        <button type="button" class = "button innerlink" onclick="window.location.href='edit_user';">Edit User Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       <div class="sign-up-container">
+        <h1 id="login-text"> EDIT RESERVATION </h1><br>
+        <form class="login-form" id="login"> 
+            <div class="inp">
+                <label for="selectedDate">Reservation Date: </label><br>
+                <input type="datetime-local" id="date" name="selectedDate" onchange="fetchReservedSeats()" step="3600">
+            </div>
+                
+            <div class="inp">
+                <label for="seat">Seat: </label><br>
+                <input type="seat" id="seat" name="seat" ><br>
+            </div>
+
+            <div class="inp">
+                <label for="name">Name: </label><br>
+                <input type="text" id="nameinp" name="name" ><br>
+            </div>
+
+            <div id="button">
+            <button type="submit" id="submit" onclick="addReservation()">Add</button>
+            <button type="Add" id="Remove" onclick="removeReservation()">Remove</button>
+             </div>
+        </form>
+    </body>
+    <script src="/Controller/edit_reservationsController.js"></script>
+
+</hbs>
