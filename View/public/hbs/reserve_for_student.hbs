@@ -15,7 +15,7 @@
         </style>
     </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <body>
+    <body style="background-image: url('images/andrew.jpg'); opacity: 95%">
         <div id = "top">
             <div id = "topLeft">
                 <div id = "logo"><img src = "/images/DLSU.png"></div>
@@ -46,6 +46,21 @@
                 </div>
             </div>
         </div>
+
+        <div id = "mid">
+            <div id = "midContainer">
+                <div id="midTop">
+                    ROOMS
+                </div>
+                <div id="midBottom">
+                <button type="button" id = "AG1904" onclick="">ROOM AG1904</button>
+                <button type="button" id = "GK306A" onclick="">ROOM GK306A</button>
+                <button type="button" id = "GK302B" onclick="">ROOM GK302B</button>
+                </div>
+            </div>
+        </div>
+
+        <div id = "bodyContainer">
         
         <div id = "detailFather">
         <div class="detailContainer">
@@ -61,8 +76,7 @@
                 RESERVE A SEAT
             </div>
         </div>
-
-    </div>
+        </div>
         
         
         <div class="seatContainer">
@@ -79,17 +93,41 @@
             </div>
             
             <div class="date">
-                    <label for="selectedDate">Reservation Date: </label>
-                    <input type="datetime-local" id="reservation" name="selectedDate" onchange="fetchReservedSeats()" step="3600">
-                    <label for="name" id="label">Name: </label>
-                    <input type="text" id="name" value="Type your name here...">
-                    <label for="name" id="label">Anonymous: </label>
-                    <input type="checkbox" id="anonymous">
-                </div>
+                <label for="selectedDate">Reservation Date: </label>
+                <input type="datetime-local" id="reservation" name="selectedDate" onchange="fetchReservedSeats()" step="3600">
+                <label for="name" id="label">Name: </label>
+                <input type="text" id="name" value="Type your name here...">
+                <label for="name" id="label">Anonymous: </label>
+                <input type="checkbox" id="anonymous">
             </div>
         </div>
             <script src="/Controller/reserveController.js"></script>
         </form>
+        </div>
+        {{!--
+        <div id = "footer">
+            <div id = "footerContainer">
+                <div id = "footerLeft">
+                    <div id = "footerLogo"><img src = "/images/DLSU.png"></div>
+                    <div id = "footerTitle">DLSU RESERVATION SYSTEM</div>
+                </div>
+                 
+                <div id = "footerRight">
+                    <div id = "footerLinks">
+                        <div class = "footerLink" onclick="window.location.href='/about_us';">ABOUT US</div>
+                        <div class = "footerLink" onclick="window.location.href='/contact_us';">CONTACT US</div>
+                        <div class = "footerLink" onclick="window.location.href='/privacy_policy';">PRIVACY POLICY</div>
+                        <div class = "footerLink" onclick="window.location.href='/help';">HELP</div>
+                    </div>
+                    <div id = "footerMedia">
+                        <div id = "footerFacebook"><img src = "/images/facebook.png"></div>
+                        <div id = "footerTwitter"><img src = "/images/twitter.png"></div>
+                        <div id = "footerInstagram"><img src = "/images/instagram.png"></div>
+                    </div>
+                </div>
+                
+            </div>
+            --}}
     </body>
     
 </hbs>
