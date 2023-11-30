@@ -13,12 +13,17 @@ const session = require("express-session");
 const templatePath = path.join(__dirname, "View", "public", "hbs");
 app.set("views", templatePath);
 app.set("view engine", "hbs");
-app.use(express.static(path.join(__dirname, "View", "public")));
+
 
 // Set up body-parser middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+const staticPath = path.join(__dirname, "View", "public");
+app.use("/static", express.static(staticPath));
+const controllerPath = path.join(__dirname, "Controller");
+app.use("/static/Controller", express.static(controllerPath));
 
 // Validation middleware for the /signup route
 const validateSignup = [
