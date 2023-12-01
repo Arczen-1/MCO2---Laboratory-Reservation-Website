@@ -2,6 +2,7 @@ async function reserveSeat(seat) {
     const selectedDate = document.getElementById('reservation').value;
     const name = document.getElementById('name').value;
     const isAnonymous = document.getElementById('anonymous').checked;
+    const room = "GK306A";
 
         if (!selectedDate) {
             alert('Please select a date and time before reserving a seat.');
@@ -19,7 +20,7 @@ async function reserveSeat(seat) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, isAnonymous }),
+        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, isAnonymous, room}),
         });
 
             if (!response.ok) {

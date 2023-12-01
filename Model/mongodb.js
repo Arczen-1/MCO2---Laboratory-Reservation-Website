@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/MCO2", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb://localhost:27017/test-room2", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() =>{
     console.log("mongodb connected");
 })
@@ -42,7 +42,12 @@ const seatsSchema = new mongoose.Schema({
   },
   isAnonymous: {
     type: Boolean,
-  }
+  },
+  room:{
+    type:String,
+    enum:["AG1904", "GK306A", "GK302B"],
+    default:"AG1904",
+}
   
 })
   

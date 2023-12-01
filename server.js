@@ -55,11 +55,11 @@ const usersData = [
 
 // Sample data for Seats
 const seatsData = [
-  { name: "Deez", seat: "A1", isAnonymous: false, reservationDate: new Date("2023-11-20T08:00:00Z") },
-  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-21T10:00:00Z") },
-  { name: "Zen", seat: "C1", isAnonymous: false, reservationDate: new Date("2023-11-22T08:00:00Z") },
-  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-23T10:00:00Z") },
-  { name: "Jacob", seat: "D1", isAnonymous: false, reservationDate: new Date("2023-11-24T08:00:00Z") }
+  { name: "Deez", seat: "A1", isAnonymous: false, reservationDate: new Date("2023-11-20T08:00:00Z"), room: "AG1904" },
+  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-21T10:00:00Z"), room: "AG1904"  },
+  { name: "Zen", seat: "C1", isAnonymous: false, reservationDate: new Date("2023-11-22T08:00:00Z"), room: "GK306A"  },
+  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-23T10:00:00Z"), room: "GK302B" },
+  { name: "Jacob", seat: "D1", isAnonymous: false, reservationDate: new Date("2023-11-24T08:00:00Z"), room: "GK302B" }
 ];
 
 Users.insertMany(usersData);
@@ -260,7 +260,7 @@ app.get("/reserve", (req, res) => {
   }
 });
 app.post("/reserve-seat", async (req, res) => {
-  const { name, seat, selectedDate, isAnonymous } = req.body;
+  const { name, seat, selectedDate, isAnonymous, room } = req.body;
 
   if (!seat || !selectedDate) {
     return res.status(400).json({ error: 'Seat, selected date, and selected time information are required.' });
@@ -270,7 +270,7 @@ app.post("/reserve-seat", async (req, res) => {
     
     await Seats.findOneAndUpdate(
       { seat, reservationDate: selectedDate },
-      { name, seat, reservationDate: selectedDate, isAnonymous },
+      { name, seat, reservationDate: selectedDate, isAnonymous, room },
       { upsert: true, new: true }
     );
 
