@@ -24,16 +24,6 @@ input[type="text"],[type="password"] {
 
 }
 
-input[type="text"],[type="course"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-}
-
 input[type="text"],[type="email"] {
     width: 100%;
     padding: 10px;
@@ -77,27 +67,6 @@ input[type="submit"]:hover {
     margin-top: 60px;
 }
 
-.delete-container {
-    text-align: center;
-    padding: 40px;
-    border: 1px solid #ccc;
-    border-radius: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -40%);
-    width: 465.500px;
-    height: auto;
-    background-color: #1F271B;
-    color: aliceblue;
-    margin-top: 60px;
-    padding-bottom: 20px;
-}
-
-#button{
-    padding: 10px;
-}
-
 .sign-up-container {
     text-align: center;
     padding: 40px;
@@ -106,9 +75,8 @@ input[type="submit"]:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -15%);
+    transform: translate(-50%, -35%);
     width: 465.5px;
-    height: auto;
     background-color: #1F271B;
     color: aliceblue;
     margin-top: -60px;
@@ -214,12 +182,6 @@ body {
 }
 
 #email{
-    height: 20px;
-    width: 350px;
-    border-radius: 40px;
-}
-
-#course{
     height: 20px;
     width: 350px;
     border-radius: 40px;
