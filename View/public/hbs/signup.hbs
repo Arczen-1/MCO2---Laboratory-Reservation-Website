@@ -26,7 +26,7 @@
         </div>
     </div>
         
-    <div class="login-container">
+    <div class="sign-up-container">
         <h1 id="login-text"> SIGNUP </h1>
         <form class="login-form" id="login" action="/signup" method="post"> 
             <div id="input">
@@ -43,6 +43,20 @@
                 <label for="email">Email:</label><br>
                 <input type="email" id="email" name="email" ><br>
             </div>
+
+            <div id="input">
+                <label for="course">Course:</label><br>
+                <input type="course" id="course" name="course" ><br>
+            </div>
+
+            <div id="input">
+                <label for="type">Type:</label><br>
+                <select id="type" name="type" >
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                </select><br>
+            </div>
+
             <div id="button">
                 <button type="submit" id="submit">Register</button>
             </div>
