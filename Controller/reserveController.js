@@ -2,7 +2,7 @@ async function reserveSeat(seat) {
     const selectedDate = document.getElementById('reservation').value;
     const name = document.getElementById('name').value;
     const isAnonymous = document.getElementById('anonymous').checked;
-    const room = "GK306A";
+    const room = "AG1904";
 
         if (!selectedDate) {
             alert('Please select a date and time before reserving a seat.');
