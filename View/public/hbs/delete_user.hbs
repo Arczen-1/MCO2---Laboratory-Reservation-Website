@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="/css/universal.css">
+    <link rel="stylesheet" href="/css/login_logout.css">
+    <style>
+        /* Default CSS Values */
+        a:link, a:visited { 
+          color:black;
+          text-decoration: underline;
+          cursor: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <div id="header">
+            <img id="logo" src="/images/DLSU.png"> </img>
+            <div id="logo-text"> DLSU LABORATORY RESERVATION SYSTEM </div> 
+        </div>
+        <div>
+            <button type="button" id = "home" onclick="window.location.href='/homie';">Home</button>
+        </div>
+    </div>
+        
+    <div class="delete-container">
+        <h1 id="login-text"> Confirm Profile Deletion: </h1>
+        <form class="login-form" id="login" action="/delete_user" method="post">
+            <div id="button">
+                <button type="submit" id="submit">Confirm</button>
+            </div>
+        </form>
+        <div id="button">
+            <button type="submit"  id="submit" onclick="window.location.href='/reserve';">Return</button>
+            </div>
+        <div id="errors">
+            {{#if errors}}
+            <ul>
+                {{#each errors}}
+                <li>{{this.msg}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </div>
+    </div>
+
+</body>
+
+</html>
