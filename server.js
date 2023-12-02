@@ -91,12 +91,16 @@ app.post("/signup", validateSignup, async (req, res) => {
     return res.render("signup", { errors: errors.array() });
   }
 
+  var gotPassword = req.body.password;
+  const hash = bcrypt.hashSync(gotPassword, 10);
+  gotPassword = hash;
+
   const data = {
     username: req.body.username,
-    password: req.body.password,
+    password: gotPassword,
     email: req.body.email,
-    course: "",
-    type: ""
+    course: req.body.course,
+    type: req.body.type
   };
 
   try {
@@ -130,14 +134,15 @@ app.get("/login", (req, res) => {
 
 
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  const  username = req.body.username;
+  var value = req.body.password;
   let isLoggedIn = false; 
   const errors = [];
 
   try {
     const user = await Users.findOne({ username });
 
-    if (!user || password !== user.password) {
+    if (!user || !bcrypt.compareSync(value, user.password)) {
       errors.push({ msg: "Invalid username or password" });
       res.render("login", { errors });
       return;
@@ -207,6 +212,26 @@ app.post('/edit_user', async (req, res) => {
   }
 });
 
+app.get("/delete_user", (req, res) => {
+  res.render("delete_user");
+});
+
+app.post("/delete_user", async (req, res) => {
+  const currentUser = req.session.user; 
+  if (!currentUser) {
+      return res.redirect('/login');
+  }
+  try {
+    await Users.deleteOne({ _id: currentUser._id });
+      req.session.user = null; 
+      const username = "Guest";
+      res.render("homie", { username }); 
+} catch (error) {
+    console.error('Error updating data in MongoDB:', error);
+    res.status(500).render('error', { message: 'Internal Server Error' });
+}
+});
+
 app.get("/reserve", (req, res) => {
   try {
     
@@ -260,6 +285,7 @@ app.get("/reserve", (req, res) => {
   }
 });
 app.post("/reserve-seat", async (req, res) => {
+  const currentUser = req.session.user;
   const { name, seat, selectedDate, isAnonymous, room } = req.body;
 
   if (!seat || !selectedDate) {
@@ -267,14 +293,18 @@ app.post("/reserve-seat", async (req, res) => {
   }
 
   try {
-    
-    await Seats.findOneAndUpdate(
-      { seat, reservationDate: selectedDate },
-      { name, seat, reservationDate: selectedDate, isAnonymous, room },
-      { upsert: true, new: true }
-    );
+    if(currentUser.username == name || currentUser.type == "Teacher"){
+      await Seats.findOneAndUpdate(
+        { seat, reservationDate: selectedDate },
+        { name, seat, reservationDate: selectedDate, isAnonymous },
+        { upsert: true, new: true }
+      );
+      res.json({ message: 'Seat reserved successfully.' });
+    }
+    else{
+      return res.status(400).json({ error: 'You cannot reserve for this person' });
+    }
 
-    res.json({ message: 'Seat reserved successfully.' });
   } catch (error) {
     console.error('Error reserving seat:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -359,17 +389,21 @@ app.get("/remove", async (req, res) => {
 });
 
 app.post('/remove-seat', async (req, res) => {
+  const currentUser = req.session.user;
   const { seat, selectedDate } = req.body;
+  const currSeat = await Seats.findOne({seat, reservationDate: selectedDate});
 
   if (!seat || !selectedDate) {
     return res.status(400).json({ error: 'Seat and selected date information are required.' });
   }
 
   try {
-    
-    await Seats.deleteOne({ seat, reservationDate: selectedDate });
-
-    res.json({ message: 'Seat reservation removed successfully.' });
+    if (currentUser.username == currSeat.name || currentUser.type == "Teacher") {
+      await Seats.deleteOne({ seat, reservationDate: selectedDate });
+      res.json({ message: 'Seat reservation removed successfully.' });
+    }else{
+      res.json({ message: 'You have are not allowed to remove this reservation.' });
+    }
   } catch (error) {
     console.error('Error removing seat reservation:', error);
     res.status(500).json({ error: 'Internal Server Error' });
