@@ -23,11 +23,9 @@ const logInSchema = new mongoose.Schema({
     },
     course:{
         type:String,
-        required:true
     },
     type:{
         type:String,
-        required:true
     }
 })
 
@@ -44,7 +42,12 @@ const seatsSchema = new mongoose.Schema({
   },
   isAnonymous: {
     type: Boolean,
-  }
+  },
+  room:{
+    type:String,
+    enum:["AG1904", "GK306A", "GK302B"],
+    default:"AG1904",
+}
   
 })
   
