@@ -20,7 +20,7 @@ async function reserveSeat(seat) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, isAnonymous }),
+        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, isAnonymous, room}),
         });
 
             if (!response.ok) {
@@ -51,7 +51,7 @@ async function reserveSeat(seat) {
 
 async function fetchReservedSeats() {
     const selectedDate = document.getElementById('reservation').value;
-    const room = ("AG1904");
+    const room = ("GK306A");
 
     if (!selectedDate) {
         console.error('Selected date cannot be empty.');
