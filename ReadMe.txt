@@ -20,6 +20,7 @@ Installation(Terminal)
 -npm i hbs
 -npm i express
 -npm i mongoose
+-npm o bcrypt
 -npm i nodemon (optional)
 
 Three Ways To Execute Program
