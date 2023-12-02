@@ -541,11 +541,9 @@ body{
     cursor: pointer;
 }
 #icon img{
-    margin-right: 30px;
     width: 40px;
     height: 40px;
     margin-top: 8px;
-    margin-right: 2%;
 }
 #icon{
     width: 50px;

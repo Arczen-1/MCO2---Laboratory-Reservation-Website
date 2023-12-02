@@ -548,7 +548,9 @@ app.get("/302B", async (req, res) => {
   }
 });
 
-
+app.get("/about", async (req, res) => {
+  res.render("about");
+});
 
 // Start the server
 app.listen(port, () => {
