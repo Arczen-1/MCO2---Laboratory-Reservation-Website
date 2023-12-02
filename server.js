@@ -36,7 +36,28 @@ const validateSignup = [
 ];
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname,  "View", "public")));
+
+// Sample data for Users
+const usersData = [
+  { username: "Zen", email: "Zen@example.com", password: "password1", course: "Information Technology", type: "Student" },
+  { username: "Jacob", email: "Jacob@example.com", password: "password2", course: "Information Technology", type: "Student" },
+  { username: "Kerwin", email: "Kerwin@example.com", password: "password1", course: "Computer Science", type: "Staff" },
+  { username: "Bryan", email: "Bryan@example.com", password: "password2", course: "Information Technology", type: "Student" },
+  { username: "Gabe", email: "Gabe@example.com", password: "password1", course: "Information Technology", type: "Student" }
+];
+
+// Sample data for Seats
+const seatsData = [
+  { name: "Deez", seat: "A1", isAnonymous: false, reservationDate: new Date("2023-11-20T08:00:00Z"), room: "AG1904" },
+  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-21T10:00:00Z"), room: "AG1904"  },
+  { name: "Zen", seat: "C1", isAnonymous: false, reservationDate: new Date("2023-11-22T08:00:00Z"), room: "GK306A"  },
+  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-23T10:00:00Z"), room: "GK302B" },
+  { name: "Jacob", seat: "D1", isAnonymous: false, reservationDate: new Date("2023-11-24T08:00:00Z"), room: "GK302B" }
+];
+
+Users.insertMany(usersData);
+Seats.insertMany(seatsData);
 
 // Favicon route
 app.get("/favicon.ico", (req, res) => {
@@ -265,25 +286,21 @@ app.get("/reserve", (req, res) => {
 });
 
 app.post("/reserve-seat", async (req, res) => {
-  const currentUser = req.session.user;
-  const {name, seat, selectedDate, isAnonymous } = req.body;
+  const { name, seat, selectedDate, isAnonymous, room } = req.body;
+
   if (!seat || !selectedDate) {
     return res.status(400).json({ error: 'Seat, selected date, and selected time information are required.' });
   }
 
   try {
-    if(currentUser.username == name || currentUser.type == "Teacher"){
-      await Seats.findOneAndUpdate(
-        { seat, reservationDate: selectedDate },
-        { name, seat, reservationDate: selectedDate, isAnonymous },
-        { upsert: true, new: true }
-      );
-      res.json({ message: 'Seat reserved successfully.' });
-    }
-    else{
-      return res.status(400).json({ error: 'You cannot reserve for this person' });
-    }
+    
+    await Seats.findOneAndUpdate(
+      { seat, reservationDate: selectedDate },
+      { name, seat, reservationDate: selectedDate, isAnonymous, room },
+      { upsert: true, new: true }
+    );
 
+    res.json({ message: 'Seat reserved successfully.' });
   } catch (error) {
     console.error('Error reserving seat:', error);
     res.status(500).json({ error: 'Internal Server Error' });
