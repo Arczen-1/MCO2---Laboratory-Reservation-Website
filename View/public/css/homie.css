@@ -66,6 +66,18 @@ body{
     font-family: caros;
     cursor: pointer;
 }
+#about{
+  width: 100px;
+  height: 30px;
+  padding-top: 10px;
+  font-size: 17px;
+  border: none;
+  background-color: transparent;
+  font-family: caros;
+  margin-bottom: 10px;
+  cursor: pointer;
+  margin-left: -18px;
+}
 #signup{
     width: 100px;
     height: 30px;
