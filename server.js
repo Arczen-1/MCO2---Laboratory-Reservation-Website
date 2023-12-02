@@ -282,8 +282,8 @@ app.post("/reserve-seat", async (req, res) => {
 });
 
 app.get("/reserved-seats", async (req, res) => {
-  const { date} = req.query;
-
+  const { date, room} = req.query;
+  
   if (!date) {
     return res.status(400).json({ error: 'Date is required.' });
   }
@@ -292,7 +292,7 @@ app.get("/reserved-seats", async (req, res) => {
   
   try {
 
-    const reservedSeats = await Seats.find({ reservationDate});
+    const reservedSeats = await Seats.find({ reservationDate, room});
 
     res.json({ reservedSeats: reservedSeats.map(seat => seat.seat)});
   } catch (error) {
