@@ -50,10 +50,11 @@
         {{#if isLoggedIn}}
             <div class="userContainer">
                 <div class = "userImgDiv"> <img src="images/profilepicture.jpg" class="userImg"> </div>
-                <div class = "userCardText"></div>
-                <div class = "role">{{currentUser.type}}</div>
-                <div class = "userCardName">{{ currentUser.username}} </div>
-                <div class = "course">{{currentUser.course}}</div>
+                <div class = "userCardText">
+                    <div class = "role">{{currentUser.type}}</div>
+                    <div class = "userCardName">{{ currentUser.username}} </div>
+                    <div class = "course">{{currentUser.course}}</div>
+                </div>
                 <div class = "contacts"></div>
                 <div class = "socials"></div>
                 <div class="sp">
@@ -62,6 +63,7 @@
                     <div id = "github" class="sprites"></div>
                 </div>
                 <button id="editProfile" onclick="window.location.href='/edit_user'">Edit Profile</button>
+                <button id="editProfile" onclick="window.location.href='/delete_user'">Delete Profile</button>
                 </div>
                 {{else}}
                 <div class="userContainer">
