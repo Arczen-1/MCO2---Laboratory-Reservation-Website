@@ -106,8 +106,8 @@ input[type="submit"]:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -15%);
-    width: 465.5px;
+    transform: translate(-50%, -40%);
+    width: 27%;
     height: auto;
     background-color: #1F271B;
     color: aliceblue;
@@ -202,13 +202,13 @@ body {
 }
 
 #username{
-    height: 20px;
+    height: 30px;
     width: 350px;
     border-radius: 40px;
 }
 
 #password{
-    height: 20px;
+    height: 30px;
     width: 350px;
     border-radius: 40px;
 }
@@ -220,7 +220,7 @@ body {
 }
 
 #course{
-    height: 20px;
+    height: 30px;
     width: 350px;
     border-radius: 40px;
 }
