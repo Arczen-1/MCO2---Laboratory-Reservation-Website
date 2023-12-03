@@ -20,7 +20,7 @@ async function reserveSeat(seat) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, isAnonymous }),
+        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, isAnonymous, room }),
         });
 
             if (!response.ok) {

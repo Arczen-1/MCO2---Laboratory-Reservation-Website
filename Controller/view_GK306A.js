@@ -1,5 +1,5 @@
 async function fetchReservedSeats() {
-    const room = "AG1904";
+    const room = "GK306A";
     const selectedDate = document.getElementById('reservation').value;
 
     if (!selectedDate) {

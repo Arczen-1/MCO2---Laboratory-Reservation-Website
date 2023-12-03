@@ -62,7 +62,6 @@ async function fetchReservedSeats() {
         const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}`);
         const data = await response.json();
 
-       
         document.querySelectorAll('.seat').forEach(seatElement => {
         seatElement.classList.remove('taken');
         });

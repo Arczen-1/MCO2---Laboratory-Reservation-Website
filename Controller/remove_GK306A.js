@@ -31,7 +31,7 @@ async function removeSeat(seat) {
 }
 async function fetchReservedSeats() {
     const selectedDate = document.getElementById('reservation').value;
-    const room = "AG1904";
+    const room = "GK306A";
     
     
 
