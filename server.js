@@ -293,7 +293,7 @@ app.post("/reserve-seat", async (req, res) => {
   }
 
   try {
-    if(currentUser.username == name || currentUser.type == "Teacher"){
+    if((isAnonymous) || (currentUser.username == name) || (currentUser.type == "Teacher")){
       await Seats.findOneAndUpdate(
         { seat, reservationDate: selectedDate },
         { name, seat, reservationDate: selectedDate, isAnonymous },
@@ -402,7 +402,7 @@ app.post('/remove-seat', async (req, res) => {
       await Seats.deleteOne({ seat, reservationDate: selectedDate });
       res.json({ message: 'Seat reservation removed successfully.' });
     }else{
-      res.json({ message: 'You have are not allowed to remove this reservation.' });
+      res.json({ message: 'You are not allowed to remove this reservation.' });
     }
   } catch (error) {
     console.error('Error removing seat reservation:', error);
@@ -590,3 +590,4 @@ app.get("/about", async (req, res) => {
 app.listen(port, () => {
   console.log("Server is running at http://localhost:${port}");
 });
+
