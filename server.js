@@ -46,11 +46,11 @@ app.use(express.static(path.join(__dirname,  "View", "public")));
 
 // Sample data for Users
 const usersData = [
-  { username: "Zen", email: "Zen@example.com", password: "password1", course: "Information Technology", type: "Student" },
-  { username: "Jacob", email: "Jacob@example.com", password: "password2", course: "Information Technology", type: "Student" },
-  { username: "Kerwin", email: "Kerwin@example.com", password: "password1", course: "Computer Science", type: "Staff" },
-  { username: "Bryan", email: "Bryan@example.com", password: "password2", course: "Information Technology", type: "Student" },
-  { username: "Gabe", email: "Gabe@example.com", password: "password1", course: "Information Technology", type: "Student" }
+  { username: "Zen", email: "Zen@example.com", password: bcrypt.hashSync("password1", 10), course: "Information Technology", type: "Student" },
+  { username: "Jacob", email: "Jacob@example.com", password: bcrypt.hashSync("password2", 10), course: "Information Technology", type: "Student" },
+  { username: "Kerwin", email: "Kerwin@example.com", password: bcrypt.hashSync("password3", 10), course: "Computer Science", type: "Teacher" },
+  { username: "Bryan", email: "Bryan@example.com", password: bcrypt.hashSync("password4", 10), course: "Information Technology", type: "Student" },
+  { username: "Gabe", email: "Gabe@example.com", password: bcrypt.hashSync("password5", 10), course: "Information Technology", type: "Student" }
 ];
 
 // Sample data for Seats
