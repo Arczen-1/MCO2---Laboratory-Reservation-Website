@@ -293,15 +293,14 @@ app.post("/reserve-seat", async (req, res) => {
   }
 
   try {
-    if((isAnonymous) || (currentUser.username == name) || (currentUser.type == "Teacher")){
+    if (currentUser.username == name || currentUser.type == "Teacher") {
       await Seats.findOneAndUpdate(
-        { seat, reservationDate: selectedDate },
-        { name, seat, reservationDate: selectedDate, isAnonymous },
+        { seat, reservationDate: selectedDate},
+        { name, seat, reservationDate: selectedDate, isAnonymous},
         { upsert: true, new: true }
       );
       res.json({ message: 'Seat reserved successfully.' });
-    }
-    else{
+    }else{
       return res.status(400).json({ error: 'You cannot reserve for this person' });
     }
 

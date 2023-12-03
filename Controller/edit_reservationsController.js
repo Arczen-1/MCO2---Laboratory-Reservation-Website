@@ -1,6 +1,7 @@
 
 async function fetchReservedSeats() {
     const selectedDate = document.getElementById('date').value; 
+    const room = document.getElementById('class').value;
 
         if (!selectedDate) {
                 console.error('Selected date cannot be empty.');
@@ -8,7 +9,7 @@ async function fetchReservedSeats() {
         }
 
         try {
-            const response = await fetch(`/reserved-seats?date=${selectedDate}`);
+            const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}`);
             const data = await response.json();
 
             // Reset styles for all seats
@@ -35,7 +36,7 @@ async function addReservation() {
     const selectedDate = document.getElementById('date').value;
     const seat = document.getElementById('seat').value;
     const name = document.getElementById('nameinp').value;
-
+    const room = document.getElementById('class').value;
     
     if (!selectedDate || !seat || !name) {
         alert('Please fill in all fields.');
@@ -48,7 +49,7 @@ async function addReservation() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ seat, selectedDate }),
+            body: JSON.stringify({ seat, selectedDate, name, room}),
         });
 
         if (response.ok) {
