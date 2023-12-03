@@ -65,18 +65,28 @@
         {{#if reservations.length}}
         <ul>
             {{#each reservations}}
-                <li>
-                    <strong>Name:</strong> {{this.name}}<br>
-                    <strong>Seat:</strong> {{this.seat}}<br>
-                    <strong>Room:</strong> {{this.room}}<br>
-                    <strong>Date:</strong> {{this.reservationDate}}<br>
-                    <hr>
-                </li>
+            {{#if this.isAnonymous}}
+            <li>
+                <strong>Name: Anonymous</strong><br>
+                <strong>Seat:</strong> {{this.seat}}<br>
+                <strong>Room:</strong> {{this.room}}<br>
+                <strong>Date:</strong> {{this.reservationDate}}<br>
+                <hr>
+            </li>
+            {{else}}
+            <li>
+                <strong>Name:</strong> {{this.name}}<br>
+                <strong>Seat:</strong> {{this.seat}}<br>
+                <strong>Room:</strong> {{this.room}}<br>
+                <strong>Date:</strong> {{this.reservationDate}}<br>
+                <hr>
+            </li>
+            {{/if}}
             {{/each}}
         </ul>
-    {{else}}
+        {{else}}
         <p>No reservations found.</p>
-    {{/if}}
+        {{/if}}
     </div>
     </body>
 
