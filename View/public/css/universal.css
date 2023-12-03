@@ -307,12 +307,14 @@ body{
 }
 
 #seat{
-    width: 240px;
     height: 30px;
+    width: 250px;
+    border-radius: 40px;
 }
 #nameinp{
-    width: 240px;
     height: 30px;
+    width: 250px;
+    border-radius: 40px;
 }
 .reservation_from {
 
@@ -906,6 +908,14 @@ input[type="submit"]:hover {
     color: aliceblue;
     margin-top: -60px;
     align-items: center;
+    width: 40%;
+    height: 60%;
+}
+
+#contents{
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
 }
 
 
@@ -1053,4 +1063,18 @@ input[type="submit"]:hover {
     color: white;
     font-size: 17px;
     margin-top: 10px;
+}
+#class{
+    font-family: caros;
+    font-size: 17px;
+    width: 240px;
+    height: 30px;
+    margin-right: 10px;
+}
+#classText{
+    font-family: caros;
+    font-size: 17px;
+    width: 240px;
+    height: 30px;
+    margin-right: 10px;
 }

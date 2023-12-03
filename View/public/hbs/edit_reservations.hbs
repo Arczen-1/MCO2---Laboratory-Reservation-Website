@@ -49,11 +49,21 @@
         </div>
         
        <div class="sign-up-container">
+        <div id = "contents">
         <h1 id="login-text"> EDIT RESERVATION </h1><br>
         <form class="login-form" id="login"> 
             <div class="inp">
                 <label for="selectedDate">Reservation Date: </label><br>
                 <input type="datetime-local" id="date" name="selectedDate" onchange="fetchReservedSeats()" step="3600">
+            </div>
+
+            <div id= "inp">
+                <label id="classText" for="class">Room: </label><br>
+                <select name="class" id="class">
+                <option value="AG1904">AG1904</option>
+                <option value="GK306A">GK306A</option>
+                <option value="GK302B">GK302B</option>
+                </select>
             </div>
                 
             <div class="inp">
@@ -63,7 +73,7 @@
 
             <div class="inp">
                 <label for="name">Name: </label><br>
-                <input type="text" id="nameinp" name="name" ><br>
+                <input type="name" id="nameinp"  ><br>
             </div>
 
             <div id="button">
@@ -71,6 +81,7 @@
             <button type="Add" id="Remove" onclick="removeReservation()">Remove</button>
              </div>
         </form>
+        </div>
     </body>
     <script src="static/Controller/edit_reservationsController.js"></script>
 
