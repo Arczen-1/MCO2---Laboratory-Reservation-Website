@@ -1,5 +1,6 @@
 async function reserveSeat(seat) {
     const selectedDate = document.getElementById('reservation').value;
+    const selectedTime = document.getElementById('time').value;
     const name = document.getElementById('name').value;
     const isAnonymous = document.getElementById('anonymous').checked;
     const room = "GK302B";
@@ -20,7 +21,7 @@ async function reserveSeat(seat) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, isAnonymous, room }),
+        body: JSON.stringify({ name: isAnonymous ? null : name, seat, selectedDate, selectedTime, isAnonymous, room }),
         });
 
             if (!response.ok) {
@@ -51,6 +52,7 @@ async function reserveSeat(seat) {
 
 async function fetchReservedSeats() {
     const selectedDate = document.getElementById('reservation').value;
+    const selectedTime = document.getElementById('time').value;
     const room = ("GK302B");
 
     if (!selectedDate) {
@@ -59,7 +61,7 @@ async function fetchReservedSeats() {
     }
 
     try {
-        const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}`);
+        const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}&time=${selectedTime}`);
         const data = await response.json();
 
        

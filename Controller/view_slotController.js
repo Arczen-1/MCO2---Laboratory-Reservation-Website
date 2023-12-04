@@ -1,6 +1,7 @@
 async function fetchReservedSeats() {
     const room = "AG1904";
     const selectedDate = document.getElementById('reservation').value;
+    const selectedTime = document.getElementById('time').value;
 
     if (!selectedDate) {
         console.error('Selected date cannot be empty.');
@@ -8,7 +9,7 @@ async function fetchReservedSeats() {
     }
 
     try {
-        const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}`);
+        const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}&time=${selectedTime}`);
         const data = await response.json();
 
         document.querySelectorAll('.seat').forEach(seatElement => {

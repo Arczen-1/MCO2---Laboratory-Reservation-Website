@@ -1,5 +1,6 @@
 async function removeSeat(seat) {
     const selectedDate = document.getElementById('reservation').value;
+    const selectedTime = document.getElementById('time').value;
 
     try {
         const response = await fetch('/remove-seat', {
@@ -7,7 +8,7 @@ async function removeSeat(seat) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ seat, selectedDate }),
+        body: JSON.stringify({ seat, selectedDate, selectedTime }),
         });
 
         const data = await response.json();
@@ -31,6 +32,7 @@ async function removeSeat(seat) {
 }
 async function fetchReservedSeats() {
     const selectedDate = document.getElementById('reservation').value;
+    const selectedTime = document.getElementById('time').value;
     const room = "GK302B";
     
     
@@ -42,7 +44,7 @@ async function fetchReservedSeats() {
     }
 
     try {
-        const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}`);
+        const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}&time=${selectedTime}`);
         const data = await response.json();
 
         
@@ -50,7 +52,6 @@ async function fetchReservedSeats() {
         seatElement.classList.remove('taken');
         });
         
-      
         data.reservedSeats.forEach(seat => {
         const seatElement = document.querySelector(`[data-seat="${seat}"]`);
         if (seatElement) {
