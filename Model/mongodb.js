@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-mongoose.connect("mongodb://localhost:27017/hello", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb://localhost:27017/time", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() =>{
     console.log("mongodb connected");
 })
@@ -41,6 +41,9 @@ const seatsSchema = new mongoose.Schema({
   reservationDate: {
     type: Date,
     default: Date.now,
+  },
+  reservationTime:{
+    type: String,
   },
   isAnonymous: {
     type: Boolean,

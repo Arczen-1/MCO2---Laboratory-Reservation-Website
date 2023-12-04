@@ -290,7 +290,7 @@ app.get("/reserve", (req, res) => {
 });
 app.post("/reserve-seat", async (req, res) => {
   const currentUser = req.session.user;
-  const { name, seat, selectedDate, isAnonymous, room } = req.body;
+  const { name, seat, selectedDate, selectedTime, isAnonymous, room } = req.body;
 
   if (!seat || !selectedDate) {
     return res.status(400).json({ error: 'Seat, selected date, and selected time information are required.' });
@@ -300,12 +300,12 @@ app.post("/reserve-seat", async (req, res) => {
 
     if ((isAnonymous)||currentUser.username == name) {
       await Seats.findOneAndUpdate(
-        { seat, reservationDate: selectedDate},
-        { name : currentUser.username, seat, reservationDate: selectedDate, isAnonymous, room},
+        { seat, reservationDate: selectedDate, reservationTime: selectedTime},
+        { name : currentUser.username, seat, reservationDate: selectedDate, reservationTime: selectedTime, isAnonymous, room},
         { upsert: true, new: true }
       );
       res.json({ message: 'Seat reserved successfully.' });
-    } else if (urrentUser.type == "Teacher") {
+    } else if (currentUser.type == "Teacher") {
       await Seats.findOneAndUpdate(
         { seat, reservationDate: selectedDate},
         { name, seat, reservationDate: selectedDate, isAnonymous, room},
@@ -323,17 +323,18 @@ app.post("/reserve-seat", async (req, res) => {
 });
 
 app.get("/reserved-seats", async (req, res) => {
-  const { date, room} = req.query;
+  const { date, room, time} = req.query;
   
   if (!date) {
     return res.status(400).json({ error: 'Date is required.' });
   }
 
-  const reservationDate = new Date(date);
-  
   try {
 
-    const reservedSeats = await Seats.find({ reservationDate, room});
+    const reservedSeats = await Seats.find({
+       reservationDate: new Date(date), 
+       room, 
+       reservationTime: time});
 
     res.json({ reservedSeats: reservedSeats.map(seat => seat.seat)});
   } catch (error) {
