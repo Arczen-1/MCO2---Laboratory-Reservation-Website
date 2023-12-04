@@ -14,13 +14,14 @@ Dependencies
 -HBS
 -Express
 -Mongoose
+-bcrypt
 
 Installation(Terminal)
 -npm install
 -npm i hbs
 -npm i express
 -npm i mongoose
--npm o bcrypt
+-npm i bcrypt
 -npm i nodemon (optional)
 
 Three Ways To Execute Program
@@ -31,7 +32,7 @@ Three Ways To Execute Program
 Developers
 -Baluyot Arczen
 -Ching Bryan
--Deguzman Gabe
+-De Guzman, Gabriele
 -Dela Pena, Jacob
 
  
