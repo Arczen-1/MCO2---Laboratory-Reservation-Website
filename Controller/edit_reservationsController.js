@@ -1,6 +1,7 @@
 
 async function fetchReservedSeats() {
     const selectedDate = document.getElementById('date').value; 
+    const selectedTime = document.getElementById('class2').value;
     const room = document.getElementById('class').value;
 
         if (!selectedDate) {
@@ -9,7 +10,7 @@ async function fetchReservedSeats() {
         }
 
         try {
-            const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}`);
+            const response = await fetch(`/reserved-seats?date=${selectedDate}&room=${room}&time=${selectedTime}`);
             const data = await response.json();
 
             // Reset styles for all seats
@@ -37,6 +38,7 @@ async function addReservation() {
     const seat = document.getElementById('seat').value;
     const name = document.getElementById('nameinp').value;
     const room = document.getElementById('class').value;
+    const selectedTime = document.getElementById('class2').value;
     
     if (!selectedDate || !seat || !name) {
         alert('Please fill in all fields.');
@@ -49,7 +51,7 @@ async function addReservation() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ seat, selectedDate, name, room}),
+            body: JSON.stringify({ seat, selectedDate, selectedTime, name, room}),
         });
 
         if (response.ok) {
@@ -67,6 +69,7 @@ async function addReservation() {
 
 async function removeReservation() {
     const selectedDate = document.getElementById('date').value;
+    const selectedTime = document.getElementById('class2').value;
     const seat = document.getElementById('seat').value;
 
     // Check for valid input
@@ -81,7 +84,7 @@ async function removeReservation() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ seat, selectedDate }),
+            body: JSON.stringify({ seat, selectedDate, selectedTime }),
         });
 
         if (response.ok) {
