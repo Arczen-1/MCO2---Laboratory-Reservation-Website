@@ -98,11 +98,11 @@ const usersData = [
 
 // Sample data for Seats
 const seatsData = [
-  { name: "Deez", seat: "A1", isAnonymous: false, reservationDate: new Date("2023-11-20T08:00:00Z"), room: "AG1904" },
-  { name: "Deez", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-21T10:00:00Z"), room: "AG1904"  },
-  { name: "Zen", seat: "C1", isAnonymous: false, reservationDate: new Date("2023-11-22T08:00:00Z"), room: "GK306A"  },
-  { name: "Gabe", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-23T10:00:00Z"), room: "GK302B" },
-  { name: "Jacob", seat: "D1", isAnonymous: false, reservationDate: new Date("2023-11-24T08:00:00Z"), room: "GK302B" }
+  { name: "Deez", seat: "A1", isAnonymous: false, reservationDate: new Date("2023-12-04"), reservationTime: "7:00", room: "AG1904" },
+  { name: "Deez", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-12-05"), reservationTime: "8:00", room: "AG1904"  },
+  { name: "Zen", seat: "C1", isAnonymous: false, reservationDate: new Date("2023-12-04"), reservationTime: "9:00", room: "GK306A"  },
+  { name: "Gabe", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-12-05"), reservationTime: "10:00", room: "GK302B" },
+  { name: "Jacob", seat: "D1", isAnonymous: false, reservationDate: new Date("2023-12-04"),  reservationTime: "11:00",room: "GK302B" }
 ];
 
 Users.insertMany(usersData);
