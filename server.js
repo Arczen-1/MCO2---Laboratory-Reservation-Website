@@ -9,6 +9,49 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 
+const seats = [
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "A5",
+  "A6",
+  "A7",
+  "A8",
+  "A9",
+  "A10",
+  "B1",
+  "B2",
+  "B3",
+  "B4",
+  "B5",
+  "B6",
+  "B7",
+  "B8",
+  "B9",
+  "B10",
+  "C1",
+  "C2",
+  "C3",
+  "C4",
+  "C5",
+  "C6",
+  "C7",
+  "C8",
+  "C9",
+  "C10",
+  "D1",
+  "D2",
+  "D3",
+  "D4",
+  "D5",
+  "D6",
+  "D7",
+  "D8",
+  "D9",
+  "D10",
+];
+
 // Set the views directory for your Handlebars templates
 const templatePath = path.join(__dirname, "View", "public", "hbs");
 app.set("views", templatePath);
@@ -56,9 +99,9 @@ const usersData = [
 // Sample data for Seats
 const seatsData = [
   { name: "Deez", seat: "A1", isAnonymous: false, reservationDate: new Date("2023-11-20T08:00:00Z"), room: "AG1904" },
-  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-21T10:00:00Z"), room: "AG1904"  },
+  { name: "Deez", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-21T10:00:00Z"), room: "AG1904"  },
   { name: "Zen", seat: "C1", isAnonymous: false, reservationDate: new Date("2023-11-22T08:00:00Z"), room: "GK306A"  },
-  { name: "Anonymous User", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-23T10:00:00Z"), room: "GK302B" },
+  { name: "Gabe", seat: "B2", isAnonymous: true, reservationDate: new Date("2023-11-23T10:00:00Z"), room: "GK302B" },
   { name: "Jacob", seat: "D1", isAnonymous: false, reservationDate: new Date("2023-11-24T08:00:00Z"), room: "GK302B" }
 ];
 
@@ -192,9 +235,13 @@ app.post('/edit_user', async (req, res) => {
       return res.redirect('/login');
   }
 
+  var gotPassword = req.body.password;
+  const hash = bcrypt.hashSync(gotPassword, 10);
+  gotPassword = hash;
+
   const updatedData = {
       username: req.body.username,
-      password: req.body.password,
+      password: gotPassword,
       email: currentUser.email, 
       course: req.body.course,
       type: req.body.type
@@ -234,49 +281,6 @@ app.post("/delete_user", async (req, res) => {
 
 app.get("/reserve", (req, res) => {
   try {
-    
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
     console.log("Seats:", seats);
     res.render("reserve_for_student", { seats });
   } catch (error) {
@@ -293,7 +297,15 @@ app.post("/reserve-seat", async (req, res) => {
   }
 
   try {
-    if ((isAnonymous)||currentUser.username == name || currentUser.type == "Teacher") {
+
+    if ((isAnonymous)||currentUser.username == name) {
+      await Seats.findOneAndUpdate(
+        { seat, reservationDate: selectedDate},
+        { name : currentUser.username, seat, reservationDate: selectedDate, isAnonymous, room},
+        { upsert: true, new: true }
+      );
+      res.json({ message: 'Seat reserved successfully.' });
+    } else if (urrentUser.type == "Teacher") {
       await Seats.findOneAndUpdate(
         { seat, reservationDate: selectedDate},
         { name, seat, reservationDate: selectedDate, isAnonymous, room},
@@ -336,49 +348,6 @@ app.get("/edit_reservations", async (req, res) => {
 
 app.get("/remove", async (req, res) => {
   try {
-    
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
     console.log("Seats:", seats);
   res.render("remove_reservation", { seats });
   }catch (error) {
@@ -424,48 +393,6 @@ app.get("/view_reservations", async (req, res) => {
 
 app.get("/view_slot", async (req, res) => {
   try {
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
   console.log("Seats:", seats);
   res.render("view_slot", { seats });
   }catch (error) {
@@ -478,49 +405,7 @@ app.get("/view_slot", async (req, res) => {
 
 app.get("/306A", async (req, res) => {
   try {
-    
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
+
     console.log("Seats:", seats);
     res.render("GK306A", { seats });
   } catch (error) {
@@ -530,49 +415,6 @@ app.get("/306A", async (req, res) => {
 });
 app.get("/302B", async (req, res) => {
   try {
-    
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
     console.log("Seats:", seats);
     res.render("GK302B", { seats });
   } catch (error) {
@@ -587,48 +429,6 @@ app.get("/about", async (req, res) => {
 
 app.get("/view_slot_GK306A", async (req, res) => {
   try {
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
   console.log("Seats:", seats);
   res.render("view_slot_GK306A", { seats });
   }catch (error) {
@@ -639,48 +439,6 @@ app.get("/view_slot_GK306A", async (req, res) => {
 
 app.get("/view_slot_GK302B", async (req, res) => {
   try {
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
   console.log("Seats:", seats);
   res.render("view_slot_GK302B", { seats });
   }catch (error) {
@@ -698,48 +456,6 @@ app.get("/view_slot_GK302B", async (req, res) => {
 
 app.get("/remove_reservation_GK302B", async (req, res) => {
   try {
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
   console.log("Seats:", seats);
   res.render("remove_reservation_GK302B", { seats });
   }catch (error) {
@@ -750,48 +466,6 @@ app.get("/remove_reservation_GK302B", async (req, res) => {
 
 app.get("/remove_reservation_GK306A", async (req, res) => {
   try {
-    const seats = [
-      "A1",
-      "A2",
-      "A3",
-      "A4",
-      "A5",
-      "A6",
-      "A7",
-      "A8",
-      "A9",
-      "A10",
-      "B1",
-      "B2",
-      "B3",
-      "B4",
-      "B5",
-      "B6",
-      "B7",
-      "B8",
-      "B9",
-      "B10",
-      "C1",
-      "C2",
-      "C3",
-      "C4",
-      "C5",
-      "C6",
-      "C7",
-      "C8",
-      "C9",
-      "C10",
-      "D1",
-      "D2",
-      "D3",
-      "D4",
-      "D5",
-      "D6",
-      "D7",
-      "D8",
-      "D9",
-      "D10",
-    ];
   console.log("Seats:", seats);
   res.render("remove_reservation_GK306A", { seats });
   }catch (error) {
